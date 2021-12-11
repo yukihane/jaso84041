@@ -1,0 +1,18 @@
+# release.yml
+name: Compile & Upload Release
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        run: gcc Sample.c -o Sample
+      - name: Upload assets to the GitHub release draft
+        uses: shogo82148/actions-upload-release-asset@v1
+        with:
+          upload_url: ${{ github.event.inputs.upload_url }}
+          asset_path: ./Sample
