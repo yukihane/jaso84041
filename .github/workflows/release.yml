@@ -1,7 +1,12 @@
 # release.yml
 name: Compile & Upload Release
 
-on: [push]
+on:
+  workflow_dispatch:
+    inputs:
+      upload_url:
+        description: "Assets upload URL"
+        required: true
 
 jobs:
   build:
